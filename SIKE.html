@@ -7,65 +7,45 @@
     <style>
         body {
             margin: 0;
-            overflow: hidden; /* Hide scrollbar */
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: black; /* Set the background color to black */
+            background-color: black;
             color: white;
-            cursor: pointer;
         }
 
         video {
             width: 100vw;
             height: 100vh;
             object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: none; /* Initially hide the video element */
         }
 
         audio {
-            display: none; /* Hide the audio element */
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div id="access-message">Click to Access</div>
 
-    <video autoplay muted loop id="bgVideo">
-        <!-- Replace 'path/to/your/video.mp4' with the actual path to your MP4 video -->
+    <video autoplay muted loop id="bgVideo" oncanplaythrough="startAudio()">
         <source src="rickroll.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <audio autoplay loop id="bgAudio">
-        <!-- Replace 'path/to/your/audio.mp3' with the actual path to your MP3 audio -->
+    <audio loop id="bgAudio">
         <source src="rickrollsong.mp3" type="audio/mp3">
         Your browser does not support the audio tag.
     </audio>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var accessMessage = document.getElementById("access-message");
-            var video = document.getElementById("bgVideo");
+        function startAudio() {
             var audio = document.getElementById("bgAudio");
-
-            // Event listener for click
-            accessMessage.addEventListener("click", function() {
-                // Hide access message
-                accessMessage.style.display = "none";
-
-                // Show and play video
-                video.style.display = "block";
-                video.play();
-
-                // Play audio
-                audio.play();
-            });
-        });
+            audio.style.display = "block";
+            audio.play();
+        }
     </script>
+
 </body>
 </html>

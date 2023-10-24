@@ -40,6 +40,21 @@
     </audio>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var audio = document.getElementById("bgAudio");
+
+            // Check if audio has already played
+            var hasAudioPlayed = localStorage.getItem("hasAudioPlayed");
+
+            if (!hasAudioPlayed) {
+                audio.style.display = "block";
+                audio.play();
+
+                // Mark that audio has played
+                localStorage.setItem("hasAudioPlayed", true);
+            }
+        });
+
         function startAudio() {
             var audio = document.getElementById("bgAudio");
             audio.style.display = "block";

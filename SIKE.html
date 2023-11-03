@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIKE BOI HULI KA HAHAHAHAHAHAHA</title>
+    <title>SIKE BOI YAH THOUGHT</title>
     <style>
-        body,
-        html {
+        body, html {
             margin: 0;
             padding: 0;
             height: 100%;
@@ -21,7 +19,6 @@
         }
     </style>
 </head>
-
 <body>
     <video id="videoPlayer" autoplay muted loop>
         <source src="" type="video/mp4">
@@ -36,8 +33,21 @@
             { video: 'rickroll.mp4', audio: 'rickrollsong.mp3' },
             { video: 'sike.mp4', audio: 'sike.mp3' },
             { video: 'heal.mp4', audio: 'heal.mp3' },
-            { video: 'amogus.mp4', audio: 'amogus.mp3' },
             // Add more video and audio pairs as needed
+        ];
+
+        const links = [
+            'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide',
+            'https://www.w3schools.com/js/',
+            'https://javascript.info/',
+            'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+            'https://www.freecodecamp.org/',
+            'https://www.codecademy.com/learn/introduction-to-javascript',
+            'https://javascript.info/',
+            'https://eloquentjavascript.net/',
+            'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide',
+            'https://javascript30.com/'
+            // Add more links as needed
         ];
 
         const randomIndex = Math.floor(Math.random() * videoAudioPairs.length);
@@ -46,15 +56,6 @@
 
         videoPlayer.src = videoAudioPairs[randomIndex].video;
         audioPlayer.src = videoAudioPairs[randomIndex].audio;
-
-        function playMedia() {
-            videoPlayer.play().then(() => {
-                audioPlayer.play().catch(error => {
-                    // Autoplay was prevented. Handle playback accordingly.
-                    console.error('Autoplay prevented:', error);
-                });
-            });
-        }
 
         videoPlayer.addEventListener('loadeddata', () => {
             videoPlayer.requestFullscreen().then(() => {
@@ -78,16 +79,10 @@
             videoPlayer.currentTime = 0; // Reset video to the beginning
         });
 
-        // Pause audio when the video is paused
-        videoPlayer.addEventListener('pause', () => {
-            audioPlayer.pause();
-        });
-
-        // Reset audio and video when the video ends
-        videoPlayer.addEventListener('ended', () => {
-            audioPlayer.pause();
-            videoPlayer.currentTime = 0;
-            audioPlayer.currentTime = 0;
+        // Add a click event listener to randomly redirect to a JavaScript learning resource
+        document.addEventListener('click', () => {
+            const randomLink = links[Math.floor(Math.random() * links.length)];
+            window.location.href = randomLink;
         });
     </script>
 </body>

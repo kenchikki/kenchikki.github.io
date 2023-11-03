@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Video Player</title>
+    <title>SIKE BOI HULI KA HAHAHAHAHAHAHA</title>
     <style>
         body,
         html {
@@ -26,7 +26,7 @@
     <video id="videoPlayer" autoplay muted loop>
         <source src="" type="video/mp4">
     </video>
-    <audio id="audioPlayer" loop>
+    <audio id="audioPlayer" autoplay loop>
         <source src="" type="audio/mp3">
     </audio>
 
@@ -58,12 +58,15 @@
 
         videoPlayer.addEventListener('loadeddata', () => {
             videoPlayer.requestFullscreen().then(() => {
-                playMedia();
+                videoPlayer.play(); // Start playing the video after entering fullscreen
             });
         });
 
-        document.addEventListener('click', () => {
-            playMedia();
+        videoPlayer.addEventListener('play', () => {
+            audioPlayer.play().catch(error => {
+                // Autoplay was prevented. Handle playback accordingly.
+                console.error('Autoplay prevented:', error);
+            });
         });
 
         videoPlayer.addEventListener('pause', () => {
@@ -74,7 +77,18 @@
             audioPlayer.pause();
             videoPlayer.currentTime = 0; // Reset video to the beginning
         });
+
+        // Pause audio when the video is paused
+        videoPlayer.addEventListener('pause', () => {
+            audioPlayer.pause();
+        });
+
+        // Reset audio and video when the video ends
+        videoPlayer.addEventListener('ended', () => {
+            audioPlayer.pause();
+            videoPlayer.currentTime = 0;
+            audioPlayer.currentTime = 0;
+        });
     </script>
 </body>
-
 </html>

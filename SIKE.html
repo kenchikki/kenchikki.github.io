@@ -29,26 +29,18 @@
 </head>
 <body onclick="redirectOnClick()">
 
-    <!--
-        Place your video files in the same directory as this HTML file,
-        or create separate folders for videos and adjust the file paths accordingly.
-    -->
-    <video autoplay muted loop id="bgVideo" oncanplaythrough="startAudio()">
-        <source src="videos/" type="video/mp4">
+    <video autoplay muted loop id="bgVideo" oncanplay="startAudio()">
+        <source src="" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <!--
-        Place your audio files in the same directory as this HTML file,
-        or create separate folders for audios and adjust the file paths accordingly.
-    -->
     <audio loop id="bgAudio1">
         <source src="ambatu.mp3" type="audio/mp3">
         Your browser does not support the audio tag.
     </audio>
 
     <audio loop id="bgAudio2">
-        <source src="rickrollsong.mp3" type="audio/mp3">
+        <source src="rickroll.mp3" type="audio/mp3">
         Your browser does not support the audio tag.
     </audio>
 
@@ -65,18 +57,17 @@
                 var randomIndex = Math.floor(Math.random() * 2);
 
                 if (randomIndex === 0) {
-                    video.src = "ambatu.mp4";
+                    video.src = "videos/ambatu.mp4";
                     audio1.style.display = "block";
                     audio2.style.display = "none";
                 } else {
-                    video.src = "rickroll.mp4";
+                    video.src = "videos/rickroll.mp4";
                     audio1.style.display = "none";
                     audio2.style.display = "block";
                 }
 
-                // Play the video and corresponding audio
-                video.play();
-                startAudio();
+                // Play the video (will trigger oncanplay)
+                video.load();
 
                 localStorage.setItem("hasAudioPlayed", true);
             }

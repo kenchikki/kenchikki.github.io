@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lololol</title>
+    <title>Random Video Player</title>
     <style>
-        body {
+        body, html {
             margin: 0;
+            padding: 0;
+            height: 100%;
             overflow: hidden;
         }
+
         video {
             width: 100%;
             height: 100%;
@@ -17,40 +20,49 @@
     </style>
 </head>
 <body>
-    <video id="randomVideo" autoplay></video>
+    <video id="videoPlayer" autoplay muted loop>
+        <source src="" type="video/mp4">
+    </video>
+    <audio id="audioPlayer" autoplay loop>
+        <source src="" type="audio/mp3">
+    </audio>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // List of video and audio pairs
-            const videoAudioPairs = [
-                { video: 'ambatu.mp4', audio: 'ambatu.mp3' },
-                { video: 'rickroll.mp4', audio: 'rickrollsong.mp3' },
-                { video: 'sike.mp4', audio: 'sike.mp3' },
-                // Add more video/audio pairs as needed
-            ];
+        const videoAudioPairs = [
+            { video: 'ambatu.mp4', audio: 'ambatu.mp3' },
+            { video: 'rickroll.mp4', audio: 'rickrollsong.mp3' },
+            { video: 'sike.mp4', audio: 'sike.mp3' },
+            { video: 'heal.mp4', audio: 'heal.mp3' },
+            // Add more video and audio pairs as needed
+        ];
 
-            // Get a random index to select a video/audio pair
-            const randomIndex = Math.floor(Math.random() * videoAudioPairs.length);
+        const randomIndex = Math.floor(Math.random() * videoAudioPairs.length);
+        const videoPlayer = document.getElementById('videoPlayer');
+        const audioPlayer = document.getElementById('audioPlayer');
 
-            // Get the selected video and audio filenames
-            const selectedVideo = videoAudioPairs[randomIndex].video;
-            const selectedAudio = videoAudioPairs[randomIndex].audio;
+        videoPlayer.src = videoAudioPairs[randomIndex].video;
+        audioPlayer.src = videoAudioPairs[randomIndex].audio;
 
-            // Set the video source
-            const videoElement = document.getElementById('randomVideo');
-            videoElement.src = selectedVideo;
-
-            // Create an audio element and set its source
-            const audioElement = new Audio(selectedAudio);
-
-            // Play both video and audio when the video is loaded
-            videoElement.addEventListener('loadeddata', function() {
-                // Make sure the audio and video start at the same time
-                const delay = Math.abs(audioElement.duration - videoElement.duration);
-                setTimeout(() => {
-                    audioElement.play();
-                    videoElement.play();
-                }, delay * 1000); // Convert delay to milliseconds
+        videoPlayer.addEventListener('loadeddata', () => {
+            videoPlayer.requestFullscreen().then(() => {
+                videoPlayer.play(); // Start playing the video after entering fullscreen
             });
+        });
+
+        videoPlayer.addEventListener('play', () => {
+            audioPlayer.play().catch(error => {
+                // Autoplay was prevented. Handle playback accordingly.
+                console.error('Autoplay prevented:', error);
+            });
+        });
+
+        videoPlayer.addEventListener('pause', () => {
+            audioPlayer.pause();
+        });
+
+        videoPlayer.addEventListener('ended', () => {
+            audioPlayer.pause();
+            videoPlayer.currentTime = 0; // Reset video to the beginning
         });
     </script>
 </body>

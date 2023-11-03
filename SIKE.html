@@ -30,7 +30,7 @@
 <body onclick="redirectOnClick()">
 
     <video autoplay muted loop id="bgVideo" oncanplay="startAudio()">
-        <source src="" type="video/mp4">
+        <source src="videos/" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
@@ -54,7 +54,7 @@
 
             if (!hasAudioPlayed) {
                 // Roll the dice to decide which video to play
-                var randomIndex = Math.floor(Math.random() * 2);
+                var randomIndex = Math.floor(Math.random() * randomIndex.length);
 
                 if (randomIndex === 0) {
                     video.src = "videos/ambatu.mp4";

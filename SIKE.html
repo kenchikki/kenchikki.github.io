@@ -1,103 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIKE</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: black;
-            color: white;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIKE</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: black;
+      color: white;
+    }
 
-        video {
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-        }
+    video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
 
-        audio {
-            display: none;
-        }
-    </style>
+    audio {
+      display: none;
+    }
+  </style>
 </head>
 <body onclick="redirectOnClick()">
 
-    <video autoplay muted loop id="bgVideo" oncanplay="startAudio()">
-        <source src="videos/" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var body = document.body;
 
-    <audio loop id="bgAudio1">
-        <source src="ambatu.mp3" type="audio/mp3">
-        Your browser does not support the audio tag.
-    </audio>
+      // Create video element
+      var video = document.createElement("video");
+      video.autoplay = true;
+      video.muted = true;
+      video.loop = true;
+      video.id = "bgVideo";
+      video.oncanplay = startAudio;
+      body.appendChild(video);
 
-    <audio loop id="bgAudio2">
-        <source src="rickroll.mp3" type="audio/mp3">
-        Your browser does not support the audio tag.
-    </audio>
+      // Create audio elements
+      var audio1 = createAudio("bgAudio1", "ambatu.mp3");
+      var audio2 = createAudio("bgAudio2", "rickrollsong.mp3");
+      body.appendChild(audio1);
+      body.appendChild(audio2);
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var audio1 = document.getElementById("bgAudio1");
-            var audio2 = document.getElementById("bgAudio2");
-            var video = document.getElementById("bgVideo");
+      var hasAudioPlayed = localStorage.getItem("hasAudioPlayed");
 
-            var hasAudioPlayed = localStorage.getItem("hasAudioPlayed");
+      if (!hasAudioPlayed) {
+        // Roll the dice to decide which video to play
+        var randomIndex = Math.floor(Math.random() * 2);
 
-            if (!hasAudioPlayed) {
-                // Roll the dice to decide which video to play
-                var randomIndex = Math.floor(Math.random() * randomIndex.length);
-
-                if (randomIndex === 0) {
-                    video.src = "videos/ambatu.mp4";
-                    audio1.style.display = "block";
-                    audio2.style.display = "none";
-                } else {
-                    video.src = "videos/rickroll.mp4";
-                    audio1.style.display = "none";
-                    audio2.style.display = "block";
-                }
-
-                // Play the video (will trigger oncanplay)
-                video.load();
-
-                localStorage.setItem("hasAudioPlayed", true);
-            }
-        });
-
-        function startAudio() {
-            var audio1 = document.getElementById("bgAudio1");
-            var audio2 = document.getElementById("bgAudio2");
-
-            if (audio1.style.display === "block") {
-                audio1.play();
-            } else {
-                audio2.play();
-            }
+        if (randomIndex === 0) {
+          video.src = "ambatu.mp4";
+          audio1.style.display = "block";
+          audio2.style.display = "none";
+        } else {
+          video.src = "rickroll.mp4";
+          audio1.style.display = "none";
+          audio2.style.display = "block";
         }
 
-        function redirectOnClick() {
-            var javascriptUrls = [
-                "https://stackoverflow.com/questions/tagged/javascript",
-                "https://www.w3schools.com/js/",
-                "https://www.javascript.com/",
-                "https://www.codecademy.com/learn/introduction-to-javascript",
-                "https://javascript.info/",
-                "https://www.hostinger.com/tutorials/what-is-javascript",
-            ];
+        // Play the video (will trigger oncanplay)
+        video.load();
 
-            var randomJsUrl = javascriptUrls[Math.floor(Math.random() * javascriptUrls.length)];
-            window.location.href = randomJsUrl;
-        }
-    </script>
+        localStorage.setItem("hasAudioPlayed", true);
+      }
+    });
+
+    function startAudio() {
+      var audio1 = document.getElementById("bgAudio1");
+      var audio2 = document.getElementById("bgAudio2");
+
+      if (audio1.style.display === "block") {
+        audio1.play();
+      } else {
+        audio2.play();
+      }
+    }
+
+    function createAudio(id, src) {
+      var audio = document.createElement("audio");
+      audio.loop = true;
+      audio.id = id;
+
+      var source = document.createElement("source");
+      source.src = src;
+      source.type = "audio/mp3";
+
+      audio.appendChild(source);
+
+      return audio;
+    }
+
+    function redirectOnClick() {
+      var javascriptUrls = [
+        "https://stackoverflow.com/questions/tagged/javascript",
+        "https://www.w3schools.com/js/",
+        "https://www.javascript.com/",
+        "https://www.codecademy.com/learn/introduction-to-javascript",
+        "https://javascript.info/",
+        "https://www.hostinger.com/tutorials/what-is-javascript",
+      ];
+
+      var randomJsUrl = javascriptUrls[Math.floor(Math.random() * javascriptUrls.length)];
+      window.location.href = randomJsUrl;
+    }
+  </script>
 
 </body>
 </html>

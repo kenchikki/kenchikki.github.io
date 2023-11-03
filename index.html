@@ -3,72 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Under Construction</title>
+    <title>Under Construction</title>
+    <link rel="icon" type="image/png" href="vladsitefavicon.png">
+    <link href="https://fonts.cdnfonts.com/css/visby" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Visby', sans-serif;
+            background-color: #f0f0f0; /* Light grey background */
+            color: #333; /* Dark grey text */
             margin: 0;
             padding: 0;
-            text-align: center;
-            background-color: #f4f4f4;
-            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 200vh; /* Increased height for a longer webpage */
+            overflow-y: scroll; /* Enable vertical scrolling */
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
         }
 
-        header {
-            background-color: #3498db;
-            color: #fff;
-            padding: 10px;
-            font-size: 24px;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        #header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff; /* White background for the header */
+            padding: 20px; /* Increased padding for a bigger header */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+            z-index: 1000; /* Ensure the header stays above other elements */
+            text-align: center; /* Center the text within the header */
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 48px; /* Increased font size for the header text */
+            font-weight: bold;
+        }
+
+        #welcome-header {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 50vh; /* Centered position for "Welcome to my website" */
         }
 
         #construction-message {
-            margin-top: 20px;
-            font-size: 18px;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
         #redirect-button {
-            margin-top: 20px;
+            background-color: #666; /* Darker grey button */
+            color: #fff; /* White text on the button */
             padding: 10px 20px;
             font-size: 16px;
-            cursor: pointer;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
             text-decoration: none;
+            border: none;
+            border-radius: 10px; /* Rounded corners */
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 1s; /* Delay the button's fade-in effect */
         }
 
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        
+
+        #redirect-button:hover {
+            background-color: #444; /* Darker grey on hover */
+        }
+
+        #about-me {
+            font-size: 20px;
+            text-align: center;
+            margin: 200px; /* Added margin to the "About Me" section */
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Vlad's Website!</h1>
-    </header>
-    <div id="construction-message">
-        <h2>This website is still under construction.</h2> <p>As the submission bins and lesson proper are still not introduced to us, check back on a later date to see an update on this webpage.</p>
-        <p>I have uploaded my notes, links to my old repos, and other stuff from my previous ITC class to a google doc and drive folder, just click the button below!</p>
-        <p>You can also visit my <a href="https://github.com/kenchikki" target="_blank">GitHub</a> to see nothing.</p>
+    <div id="header">
+        <h1>Vlad</h1>
     </div>
-    <button id="redirect-button">My notes</button>
 
-    <footer>
-        Vladimier Juliano
-    </footer>
+    <div id="welcome-header">
+        <h1>Welcome to my website.</h1>
+    </div>
 
+    <div id="construction-message">
+        <p>Great things are coming its way.</p>
+    </div>
+
+    <a id="redirect-button" href="sike.html">Vlad's programming notes</a>
+
+    <!-- About Me Section -->
+    <div id="about-me">
+        <h2>About Me</h2>
+        <p>
+            Greetings from Vladimier Juliano!<br>
+            Hey there, I'm Vladimier Juliano, a tech enthusiast and perpetual learner on a journey through the digital landscape. 
+            Formerly immersed in game development, I've transitioned into the world of Information Technology, discovering new passions and challenges along the way.
+        </p>
+
+        <p>
+            <strong>A Gamer and Creator</strong><br>
+            When I'm not diving into the complexities of IT, I'm either gaming or working on quirky digital creations. I see gaming as more than just entertainment—it's an art form, and I love injecting my creativity into the virtual realm.
+        </p>
+
+        <p>
+            <strong>Entrepreneurial Ventures</strong><br>
+            In addition to my academic pursuits, I wear the hat of a business founder. This entrepreneurial journey adds a practical edge to my theoretical knowledge, creating a well-rounded skill set.
+        </p>
+
+        <p>
+            <strong>Why I'm Here</strong><br>
+            Learning, for me, is an adventure. Each line of code, every new concept, is a step forward in an ever-expanding journey. Join me as I navigate through the exciting intersections of technology, creativity, and entrepreneurship.
+        </p>
+
+        <p>
+            <strong>Let's Connect!</strong><br>
+            Whether you're into tech, gaming, or the entrepreneurial hustle, let's connect. Explore my portfolio, dive into the projects, and let's chat about the exciting possibilities in the world of tech.
+        </p>
+
+        <p>
+            Thanks for stopping by!<br>
+            Vladimier Juliano
+        </p>        
+    </div>
+    <button id="github-button" onclick="window.location.href='https://github.com/kenchikki'">My GitHub</button>
 
     <script>
-        
-        document.getElementById('redirect-button').addEventListener('click', function() {
-            
-            window.location.href = 'SIKE.html';
+        // Add a script to handle the fade-in effect for the GitHub button
+        document.addEventListener('DOMContentLoaded', function() {
+            var githubButton = document.getElementById('github-button');
+            githubButton.style.animation = 'fadeIn 2s ease-in-out forwards';
+            githubButton.style.animationDelay = '1s';
         });
     </script>
 </body>

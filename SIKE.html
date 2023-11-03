@@ -29,39 +29,76 @@
 </head>
 <body onclick="redirectOnClick()">
 
-    <video autoplay muted loop id="bgVideo" oncanplaythrough="startAudio()">
-        <source src="rickroll.mp4" type="video/mp4">
+    <!--
+        Place your video files in the same directory as this HTML file,
+        or create separate folders for videos and adjust the file paths accordingly.
+    -->
+    <video autoplay muted loop id="bgVideo1" oncanplaythrough="startAudio()">
+        <source src="videos/ambatu.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <audio loop id="bgAudio">
+    <video autoplay muted loop id="bgVideo2" oncanplaythrough="startAudio()">
+        <source src="videos/rickroll.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <!--
+        Place your audio files in the same directory as this HTML file,
+        or create separate folders for audios and adjust the file paths accordingly.
+    -->
+    <audio loop id="bgAudio1">
+        <source src="ambatu.mp3" type="audio/mp3">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <audio loop id="bgAudio2">
         <source src="rickrollsong.mp3" type="audio/mp3">
         Your browser does not support the audio tag.
     </audio>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var audio = document.getElementById("bgAudio");
+            var audio1 = document.getElementById("bgAudio1");
+            var audio2 = document.getElementById("bgAudio2");
+            var video = document.getElementById("bgVideo");
 
             var hasAudioPlayed = localStorage.getItem("hasAudioPlayed");
 
             if (!hasAudioPlayed) {
-                audio.style.display = "block";
-                audio.play();
+                // Roll the dice to decide which video to play
+                var randomIndex = Math.floor(Math.random() * 2);
+
+                if (randomIndex === 0) {
+                    video.src = "path/to/your/video1.mp4";
+                    audio1.style.display = "block";
+                    audio2.style.display = "none";
+                } else {
+                    video.src = "path/to/your/video2.mp4";
+                    audio1.style.display = "none";
+                    audio2.style.display = "block";
+                }
+
+                // Play the video and corresponding audio
+                video.play();
+                startAudio();
 
                 localStorage.setItem("hasAudioPlayed", true);
             }
         });
 
         function startAudio() {
-            var audio = document.getElementById("bgAudio");
-            audio.style.display = "block";
-            audio.play();
+            var audio1 = document.getElementById("bgAudio1");
+            var audio2 = document.getElementById("bgAudio2");
+
+            if (audio1.style.display === "block") {
+                audio1.play();
+            } else {
+                audio2.play();
+            }
         }
 
         function redirectOnClick() {
-            // Array of possible URLs
-            var urls = [
+            var javascriptUrls = [
                 "https://stackoverflow.com/questions/tagged/javascript",
                 "https://www.w3schools.com/js/",
                 "https://www.javascript.com/",
@@ -70,11 +107,8 @@
                 "https://www.hostinger.com/tutorials/what-is-javascript",
             ];
 
-            
-            var randomIndex = Math.floor(Math.random() * urls.length);
-
-            
-            window.location.href = urls[randomIndex];
+            var randomJsUrl = javascriptUrls[Math.floor(Math.random() * javascriptUrls.length)];
+            window.location.href = randomJsUrl;
         }
     </script>
 

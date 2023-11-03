@@ -33,15 +33,11 @@
         Place your video files in the same directory as this HTML file,
         or create separate folders for videos and adjust the file paths accordingly.
     -->
-    <video autoplay muted loop id="bgVideo1" oncanplaythrough="startAudio()">
-        <source src="videos/ambatu.mp4" type="video/mp4">
+    <video autoplay muted loop id="bgVideo" oncanplaythrough="startAudio()">
+        <source src="videos/" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <video autoplay muted loop id="bgVideo2" oncanplaythrough="startAudio()">
-        <source src="videos/rickroll.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
     <!--
         Place your audio files in the same directory as this HTML file,
         or create separate folders for audios and adjust the file paths accordingly.
@@ -69,11 +65,11 @@
                 var randomIndex = Math.floor(Math.random() * 2);
 
                 if (randomIndex === 0) {
-                    video.src = "path/to/your/video1.mp4";
+                    video.src = "ambatu.mp4";
                     audio1.style.display = "block";
                     audio2.style.display = "none";
                 } else {
-                    video.src = "path/to/your/video2.mp4";
+                    video.src = "rickroll.mp4";
                     audio1.style.display = "none";
                     audio2.style.display = "block";
                 }

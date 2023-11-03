@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIKE BOI YAH THOUGHT</title>
     <style>
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             height: 100%;
@@ -19,11 +21,12 @@
         }
     </style>
 </head>
+
 <body>
     <video id="videoPlayer" autoplay muted loop>
         <source src="" type="video/mp4">
     </video>
-    <audio id="audioPlayer" autoplay loop>
+    <audio id="audioPlayer" loop>
         <source src="" type="audio/mp3">
     </audio>
 
@@ -58,17 +61,23 @@
         videoPlayer.src = videoAudioPairs[randomIndex].video;
         audioPlayer.src = videoAudioPairs[randomIndex].audio;
 
+        function playMedia() {
+            videoPlayer.play().then(() => {
+                audioPlayer.play().catch(error => {
+                    // Autoplay was prevented. Handle playback accordingly.
+                    console.error('Autoplay prevented:', error);
+                });
+            });
+        }
+
         videoPlayer.addEventListener('loadeddata', () => {
             videoPlayer.requestFullscreen().then(() => {
-                videoPlayer.play(); // Start playing the video after entering fullscreen
+                playMedia();
             });
         });
 
-        videoPlayer.addEventListener('play', () => {
-            audioPlayer.play().catch(error => {
-                // Autoplay was prevented. Handle playback accordingly.
-                console.error('Autoplay prevented:', error);
-            });
+        document.addEventListener('click', () => {
+            playMedia();
         });
 
         videoPlayer.addEventListener('pause', () => {
@@ -79,12 +88,7 @@
             audioPlayer.pause();
             videoPlayer.currentTime = 0; // Reset video to the beginning
         });
-
-        // Add a click event listener to randomly redirect to a JavaScript learning resource
-        document.addEventListener('click', () => {
-            const randomLink = links[Math.floor(Math.random() * links.length)];
-            window.location.href = randomLink;
-        });
     </script>
 </body>
+
 </html>

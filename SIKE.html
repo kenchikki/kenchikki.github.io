@@ -1,115 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SIKE</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background-color: black;
-      color: white;
-    }
-
-    video {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-    }
-
-    audio {
-      display: none;
-    }
-  </style>
-</head>
-<body onclick="redirectOnClick()">
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      var body = document.body;
-
-      // Create video element
-      var video = document.createElement("video");
-      video.autoplay = true;
-      video.muted = true;
-      video.loop = true;
-      video.id = "bgVideo";
-      video.oncanplay = startAudio;
-      body.appendChild(video);
-
-      // Create audio elements
-      var audio1 = createAudio("bgAudio1", "ambatu.mp3");
-      var audio2 = createAudio("bgAudio2", "rickrollsong.mp3");
-      body.appendChild(audio1);
-      body.appendChild(audio2);
-
-      var hasAudioPlayed = localStorage.getItem("hasAudioPlayed");
-
-      if (!hasAudioPlayed) {
-        // Roll the dice to decide which video to play
-        var randomIndex = Math.floor(Math.random() * 2);
-
-        if (randomIndex === 0) {
-          video.src = "ambatu.mp4";
-          audio1.style.display = "block";
-          audio2.style.display = "none";
-        } else {
-          video.src = "rickroll.mp4";
-          audio1.style.display = "none";
-          audio2.style.display = "block";
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lololol</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
         }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <video id="randomVideo" autoplay></video>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // List of video and audio pairs
+            const videoAudioPairs = [
+                { video: 'ambatu.mp4', audio: 'ambatu.mp3' },
+                { video: 'rickroll.mp4', audio: 'rickrollsong.mp3' },
+                { video: 'sike.mp4', audio: 'sike.mp3' },
+                // Add more video/audio pairs as needed
+            ];
 
-        // Play the video (will trigger oncanplay)
-        video.load();
+            // Get a random index to select a video/audio pair
+            const randomIndex = Math.floor(Math.random() * videoAudioPairs.length);
 
-        localStorage.setItem("hasAudioPlayed", true);
-      }
-    });
+            // Get the selected video and audio filenames
+            const selectedVideo = videoAudioPairs[randomIndex].video;
+            const selectedAudio = videoAudioPairs[randomIndex].audio;
 
-    function startAudio() {
-      var audio1 = document.getElementById("bgAudio1");
-      var audio2 = document.getElementById("bgAudio2");
+            // Set the video source
+            const videoElement = document.getElementById('randomVideo');
+            videoElement.src = selectedVideo;
 
-      if (audio1.style.display === "block") {
-        audio1.play();
-      } else {
-        audio2.play();
-      }
-    }
+            // Create an audio element and set its source
+            const audioElement = new Audio(selectedAudio);
 
-    function createAudio(id, src) {
-      var audio = document.createElement("audio");
-      audio.loop = true;
-      audio.id = id;
-
-      var source = document.createElement("source");
-      source.src = src;
-      source.type = "audio/mp3";
-
-      audio.appendChild(source);
-
-      return audio;
-    }
-
-    function redirectOnClick() {
-      var javascriptUrls = [
-        "https://stackoverflow.com/questions/tagged/javascript",
-        "https://www.w3schools.com/js/",
-        "https://www.javascript.com/",
-        "https://www.codecademy.com/learn/introduction-to-javascript",
-        "https://javascript.info/",
-        "https://www.hostinger.com/tutorials/what-is-javascript",
-      ];
-
-      var randomJsUrl = javascriptUrls[Math.floor(Math.random() * javascriptUrls.length)];
-      window.location.href = randomJsUrl;
-    }
-  </script>
-
+            // Play both video and audio when the video is loaded
+            videoElement.addEventListener('loadeddata', function() {
+                // Make sure the audio and video start at the same time
+                const delay = Math.abs(audioElement.duration - videoElement.duration);
+                setTimeout(() => {
+                    audioElement.play();
+                    videoElement.play();
+                }, delay * 1000); // Convert delay to milliseconds
+            });
+        });
+    </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIKE BOI YAH THOUGHT</title>
+    <title>Random Video Player</title>
     <style>
         body, html {
             margin: 0;
@@ -37,20 +37,6 @@
             // Add more video and audio pairs as needed
         ];
 
-        const links = [
-            'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide',
-            'https://www.w3schools.com/js/',
-            'https://javascript.info/',
-            'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
-            'https://www.freecodecamp.org/',
-            'https://www.codecademy.com/learn/introduction-to-javascript',
-            'https://javascript.info/',
-            'https://eloquentjavascript.net/',
-            'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide',
-            'https://javascript30.com/'
-            // Add more links as needed
-        ];
-
         const randomIndex = Math.floor(Math.random() * videoAudioPairs.length);
         const videoPlayer = document.getElementById('videoPlayer');
         const audioPlayer = document.getElementById('audioPlayer');
@@ -78,12 +64,6 @@
         videoPlayer.addEventListener('ended', () => {
             audioPlayer.pause();
             videoPlayer.currentTime = 0; // Reset video to the beginning
-        });
-
-        // Add a click event listener to randomly redirect to a JavaScript learning resource
-        document.addEventListener('click', () => {
-            const randomLink = links[Math.floor(Math.random() * links.length)];
-            window.location.href = randomLink;
         });
     </script>
 </body>

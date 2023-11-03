@@ -59,7 +59,7 @@
         audioPlayer.src = videoAudioPairs[randomIndex].audio;
 
         videoPlayer.addEventListener('loadeddata', () => {
-            videoPlayer.requestFullscreen().then(() => {
+            document.documentElement.requestFullscreen().then(() => {
                 videoPlayer.play(); // Start playing the video after entering fullscreen
             });
         });

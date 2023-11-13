@@ -60,7 +60,7 @@
 
         videoPlayer.addEventListener('loadeddata', () => {
             document.documentElement.requestFullscreen().then(() => {
-                videoPlayer.play(); // Start playing the video after entering fullscreen
+                videoPlayer.play(); 
             });
         });
 
@@ -77,10 +77,10 @@
 
         videoPlayer.addEventListener('ended', () => {
             audioPlayer.pause();
-            videoPlayer.currentTime = 0; // Reset video to the beginning
+            videoPlayer.currentTime = 0; 
         });
 
-        // Add a click event listener to randomly redirect to a JavaScript learning resource
+        
         document.addEventListener('click', () => {
             const randomLink = links[Math.floor(Math.random() * links.length)];
             window.location.href = randomLink;

@@ -14,3 +14,9 @@ Nov 4
   -added a new "features" to the site.
   -added new helpful notes and links related to javascript
   -new self-written learning aid added.
+
+Nov 27
+  -added all the assignments needed.
+  -added a music page.
+  -edited the about me page
+  -added a footer with contact info

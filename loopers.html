@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N Factorial, Sum, and Average Calculator</title>
+    <link rel="icon" type="image/png" href="vladsitefavicon.png">
+    <link href="https://fonts.cdnfonts.com/css/visby" rel="stylesheet">
+    <style>
+        /* Your existing styles */
+        body {
+            font-family: 'Visby', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow-y: scroll;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards, fadeOut 2s ease-in-out reverse;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        #header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        #header h1 a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        #calculator-container {
+            text-align: center;
+            font-size: 30px;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        #result {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        #calculation-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #calculation-form label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        #calculation-form input, #calculation-form button {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #calculation-form button {
+            background-color: #666;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #calculation-form button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1><a href="index.html">Vlad</a></h1>
+    </div>
+
+    <div id="calculator-container">
+        <h1>N Factorial, Sum, and Average Calculator</h1>
+
+        <div id="result"></div>
+
+        <div id="calculation-form">
+            <label for="input-number">Enter a number (n):</label>
+            <input type="number" id="input-number" placeholder="Enter a number" />
+            
+            <button onclick="calculateResults()">Calculate</button>
+        </div>
+    </div>
+
+    <script>
+        function calculateResults() {
+            const inputNumber = parseInt(document.getElementById('input-number').value);
+
+            if (isNaN(inputNumber)) {
+                window.alert('Please enter a valid number.');
+                return;
+            }
+
+            // Calculate nth factorial using a while loop
+            let factorial = 1;
+            let i = 1;
+            while (i <= inputNumber) {
+                factorial *= i;
+                i++;
+            }
+
+            // Calculate the sum of the first n numbers using a do-while loop
+            let sum = 0;
+            let j = 1;
+            do {
+                sum += j;
+                j++;
+            } while (j <= inputNumber);
+
+            // Calculate the average of the first n numbers using a for loop
+            let total = 0;
+            for (let k = 1; k <= inputNumber; k++) {
+                total += k;
+            }
+            const average = total / inputNumber;
+
+            // Display the results
+            const resultDisplay = document.getElementById('result');
+            resultDisplay.textContent = `Factorial: ${factorial}, Sum: ${sum}, Average: ${average.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

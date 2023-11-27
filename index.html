@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
+    <title>Vladimier - Website</title>
     <link rel="icon" type="image/png" href="vladsitefavicon.png">
     <link href="https://fonts.cdnfonts.com/css/visby" rel="stylesheet">
     <style>
         body {
             font-family: 'Visby', sans-serif;
-            background-color: #f0f0f0; /* Light grey background */
-            color: #333; /* Dark grey text */
+            background-color: #f0f0f0;
+            color: #333;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 200vh; /* Increased height for a longer webpage */
-            overflow-y: scroll; /* Enable vertical scrolling */
+            height: 220vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
             opacity: 0;
-            animation: fadeIn 2s ease-in-out forwards;
+            animation: fadeIn 2s ease-in-out forwards, fadeOut 2s ease-in-out reverse;
+
         }
 
         @keyframes fadeIn {
@@ -36,23 +38,50 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: #fff; /* White background for the header */
-            padding: 20px; /* Increased padding for a bigger header */
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
-            z-index: 1000; /* Ensure the header stays above other elements */
-            text-align: center; /* Center the text within the header */
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            text-align: center;
         }
 
         #header h1 {
             margin: 0;
-            font-size: 48px; /* Increased font size for the header text */
+            font-size: 48px;
             font-weight: bold;
+        }
+
+        #header nav {
+            margin-top: 20px;
+        }
+
+        #header ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        #header li {
+            margin: 0 15px;
+        }
+
+        #header a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        #header a:hover {
+            color: #666;
         }
 
         #welcome-header {
             font-size: 36px;
             font-weight: bold;
-            margin-top: 50vh; /* Centered position for "Welcome to my website" */
+            margin-top: 60vh;
         }
 
         #construction-message {
@@ -61,39 +90,109 @@
         }
 
         #redirect-button {
-            background-color: #666; /* Darker grey button */
-            color: #fff; /* White text on the button */
+            background-color: #666;
+            color: #fff;
             padding: 10px 20px;
             font-size: 16px;
             text-decoration: none;
             border: none;
-            border-radius: 10px; /* Rounded corners */
+            border-radius: 10px;
             cursor: pointer;
             opacity: 0;
             animation: fadeIn 2s ease-in-out forwards;
-            animation-delay: 1s; /* Delay the button's fade-in effect */
+            animation-delay: 1s;
         }
 
-        
-
         #redirect-button:hover {
-            background-color: #444; /* Darker grey on hover */
+            background-color: #444;
         }
 
         #about-me {
             font-size: 20px;
             text-align: center;
-            margin: 200px; /* Added margin to the "About Me" section */
+            margin-top: 50vh;
         }
+
+        #about-me h2 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        #about-me p {
+            margin-bottom: 20px;
+        }
+
+        #github-button {
+            background-color: #666;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 1s;
+            margin-top: 20px;
+        }
+
+        #github-button:hover {
+            background-color: #444;
+        }
+    
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .contact-info {
+            text-align: left;
+            max-width: 300px; 
+            margin-left: 30px; 
+        }
+
+        .contact-info p {
+            margin-bottom: 10px; 
+        }
+
+        .social-media {
+            text-align: right;
+        }
+
+        .social-media a {
+            color: #fff;
+            margin-right: 30px;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 <body>
     <div id="header">
-        <h1>Vlad</h1>
+        <a href="index.html"><h1>Vlad</h1></a>
+        <nav>
+            <ul>
+                <li><a href="simpleconverter.html">Simple Converter</a></li>
+                <li><a href="incometaxcalc.html">Income Tax Calculator</a></li>
+                <li><a href="loopers.html">Loops</a></li>
+                <li><a href="payrollcalculator.html">Payroll Calculator</a></li>
+                <li><a href="music.html">Music</a></li>
+            </ul>
+        </nav>
     </div>
 
     <div id="welcome-header">
-        <h1>Welcome to my website.</h1>
+        <h1>Welcome to my website</h1>
     </div>
 
     <div id="construction-message">
@@ -102,49 +201,58 @@
 
     <a id="redirect-button" href="SIKE.html">Vlad's programming notes</a>
 
-    <!-- About Me Section -->
     <div id="about-me">
         <h2>About Me</h2>
-        <p>
-            Greetings from Vladimier Juliano!<br>
-            Hey there, I'm Vladimier Juliano, a tech enthusiast and perpetual learner on a journey through the digital landscape. 
-            Formerly immersed in game development, I've transitioned into the world of Information Technology, discovering new passions and challenges along the way.
+        <p> Hey there, I'm Vlad! <br>
+            a tech enthusiast and perpetual learner on a journey through the digital landscape.<br>
+            Formerly immersed in game development, I've transitioned into the world of Information Technology,<br>
+            discovering new passions and challenges along the way.
         </p>
 
         <p>
             <strong>A Gamer and Creator</strong><br>
-            When I'm not diving into the complexities of IT, I'm either gaming or working on quirky digital creations. I see gaming as more than just entertainment—it's an art form, and I love injecting my creativity into the virtual realm.
+            When I'm not diving into the complexities of IT,<br>
+            I'm either gaming or working on quirky digital creations.<br> 
+            I see gaming as more than just entertainment—it's an art form,
+            and I love injecting my creativity into the virtual realm.<br>
         </p>
 
         <p>
             <strong>Entrepreneurial Ventures</strong><br>
-            In addition to my academic pursuits, I wear the hat of a business founder. This entrepreneurial journey adds a practical edge to my theoretical knowledge, creating a well-rounded skill set.
+            In addition to my academic pursuits, I wear the hat of a business founder.<br>
+            This entrepreneurial journey adds a practical edge to my theoretical knowledge, creating a well-rounded skill set.
         </p>
 
         <p>
             <strong>Why I'm Here</strong><br>
-            Learning, for me, is an adventure. Each line of code, every new concept, is a step forward in an ever-expanding journey. Join me as I navigate through the exciting intersections of technology, creativity, and entrepreneurship.
+            Learning, for me, is an adventure.<br>
+            Each line of code, every new concept, is a step forward in an ever-expanding journey.<br>
+            Join me as I navigate through the exciting intersections of technology, creativity, and entrepreneurship.
         </p>
 
         <p>
             <strong>Let's Connect!</strong><br>
-            Whether you're into tech, gaming, or the entrepreneurial hustle, let's connect. Explore my portfolio, dive into the projects, and let's chat about the exciting possibilities in the world of tech.
+            Whether you're into tech, gaming, or the entrepreneurial hustle, let's connect.<br>
+            Explore my portfolio, dive into the projects, and let's chat about the exciting possibilities in the world of tech.
         </p>
 
         <p>
             Thanks for stopping by!<br>
-            Vladimier Juliano
-        </p>        
+           <h3>-Vladimier Juliano-</h3>
     </div>
-    <button id="github-button" onclick="window.location.href='https://github.com/kenchikki'">My GitHub</button>
+    <a id="github-button" href="https://github.com/kenchikki" target="_blank">My GitHub</a>
+</body> 
 
-    <script>
-        // Add a script to handle the fade-in effect for the GitHub button
-        document.addEventListener('DOMContentLoaded', function() {
-            var githubButton = document.getElementById('github-button');
-            githubButton.style.animation = 'fadeIn 2s ease-in-out forwards';
-            githubButton.style.animationDelay = '1s';
-        });
-    </script>
-</body>
+<footer>
+    <div class="contact-info">
+        <p>Vladimier Juliano</p>
+        <p><a href="mailto:vpjuliano@addu.edu.ph" style="color: inherit; text-decoration: none;">vpjuliano@addu.edu.ph</a></p>
+        <p>0933 879 9744</p>
+    </div>
+    <div style="border-left: 1px solid #fff; height: 70px;"></div>
+    <div class="social-media">
+        <a href="https://github.com/kenchikki">GitHub</a>
+        <a href="https://soundcloud.com/kenchikki">SoundCloud</a>
+    </div>
+</footer>
 </html>

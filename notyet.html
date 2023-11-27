@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simpleconverter</title>
+    <link rel="icon" type="image/png" href="vladsitefavicon.png">
+    <link href="https://fonts.cdnfonts.com/css/visby" rel="stylesheet">
+    <style>
+    body {
+        font-family: 'Visby', sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 200vh;
+        overflow-y: scroll;
+        opacity: 0;
+        animation: fadeIn 2s ease-in-out forwards;
+
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    #header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        text-align: center;
+    }
+
+    #header h1 {
+        margin: 0;
+        font-size: 48px;
+        font-weight: bold;
+    }
+
+    #header nav {
+        margin-top: 20px;
+    }
+
+    #header ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    #header li {
+        margin: 0 15px;
+    }
+
+    #header a {
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out;
+    }
+
+    #header a:hover {
+        color: #666;
+    }
+
+    #Head-Message {
+        font-size: 36px;
+        font-weight: bold;
+        margin-top: -70vh;
+    }
+
+    #construction-message {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    #redirect-button {
+        background-color: #666;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-decoration: none;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        opacity: 0;
+        animation: fadeIn 2s ease-in-out forwards;
+        animation-delay: 1s;
+    }
+
+    #redirect-button:hover {
+        background-color: #444;
+    }
+
+    #about-me {
+        font-size: 20px;
+        text-align: center;
+        margin: 50px 20px;
+    }
+
+    #about-me h2 {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    #about-me p {
+        margin-bottom: 20px;
+    }
+
+    #github-button {
+        background-color: #666;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-decoration: none;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        opacity: 0;
+        animation: fadeIn 2s ease-in-out forwards;
+        animation-delay: 1s;
+        margin-top: 20px;
+    }
+
+    #github-button:hover {
+        background-color: #444;
+    }
+</style>
+
+</head>
+<body>
+    <div id="header">
+        <a href="index.html"><h1>Vlad</h1></a>
+    </div>
+
+    <div id="Head-Message">
+        <h1>This part is still under construction.</h1>
+    </div>
+
+    <div id="construction-message">
+        <p>Great things are coming to this page, check back later for an update.</p>
+    </div>
+    <button id="github-button" onclick="window.location.href='https://github.com/kenchikki'">My GitHub</button>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Calculator - Vladimier</title>
+    <link rel="icon" type="image/png" href="vladsitefavicon.png">
+    <link href="https://fonts.cdnfonts.com/css/visby" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Visby', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow-y: scroll;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards, fadeOut 2s ease-in-out reverse;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        #header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        #header h1 a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        #calculator-container {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 30px;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        #result {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        #income-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #income-form label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        #income-form input, #income-form button {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #income-form button {
+            background-color: #666;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #income-form button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1><a href="index.html">Vlad</a></h1>
+    </div>
+
+    <div id="calculator-container">
+        <h1>Income Tax Calculator</h1>
+
+        <div id="result"></div>
+
+        <div id="income-form">
+            <label for="net-income">Net Taxable Income:</label>
+            <input type="number" id="net-income" placeholder="Enter net taxable income" />
+            
+            <button onclick="calculateIncomeTax()">Calculate Income Tax</button>
+        </div>
+    </div>
+
+    <script>
+        function calculateIncomeTax() {
+            const netIncomeInput = document.getElementById('net-income');
+            const resultDisplay = document.getElementById('result');
+
+            const netIncome = parseFloat(netIncomeInput.value);
+
+            if (isNaN(netIncome)) {
+                window.alert('Not a valid number');
+                return;
+            }
+
+            let incomeTax;
+
+            if (netIncome <= 250000) {
+                incomeTax = 0;
+            } else if (netIncome <= 400000) {
+                incomeTax = 14000 + 0.2 * (netIncome - 250000);
+            } else if (netIncome <= 800000) {
+                incomeTax = 60000 + 0.25 * (netIncome - 400000);
+            } else if (netIncome <= 2000000) {
+                incomeTax = 169000 + 0.3 * (netIncome - 800000);
+            } else if (netIncome <= 8000000) {
+                incomeTax = 618000 + 0.32 * (netIncome - 2000000);
+            } else {
+                incomeTax = 3110000 + 0.35 * (netIncome - 8000000);
+            }
+
+            resultDisplay.textContent = `Income Tax: ${incomeTax.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Converter - Vladimier</title>
+    <link rel="icon" type="image/png" href="vladsitefavicon.png">
+    <link href="https://fonts.cdnfonts.com/css/visby" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Visby', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow-y: scroll;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards, fadeOut 2s ease-in-out reverse;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        #header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        #header nav {
+            margin-top: 20px;
+        }
+
+        #header ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        #header li {
+            margin: 0 15px;
+        }
+
+        #header a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        #header a:hover {
+            color: #666;
+        }
+
+        #converter-container {
+            text-align: center;
+            font-size:30px;
+            margin-top: 50px;
+        }
+
+        #conversion-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #conversion-form label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        #conversion-form input, #conversion-form select, #conversion-form button {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #conversion-form input {
+            border-radius: 10px; 
+        }
+
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #conversion-form button {
+            background-color: #666;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #conversion-form button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <a href="index.html"><h1>Vlad</h1></a>
+    </div>
+
+    <div id="converter-container">
+        <h1>Simple Converter</h1>
+
+        <div id="result"></div>
+        <div id="conversion-form">
+            <label for="measurement">Measurement:</label>
+            <input type="number" id="measurement" placeholder="Enter measurement" />
+
+            <label for="unit">Select Conversion:</label>
+            <select id="unit">
+                <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
+                <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
+                <option value="metersToFeet">Meters to Feet</option>
+                <option value="feetToMeters">Feet to Meters</option>
+            </select>
+            
+            <button onclick="convertMeasurement()">Convert</button>
+        </div>
+
+    </div>
+
+    <script>
+        function convertMeasurement() {
+            const measurementInput = document.getElementById('measurement');
+            const unitSelect = document.getElementById('unit');
+            const resultDisplay = document.getElementById('result');
+
+            const measurement = parseFloat(measurementInput.value);
+
+            if (isNaN(measurement)) {
+                window.alert('Please enter a valid number for measurement.');
+                return;
+            }
+
+            let result;
+
+            switch (unitSelect.value) {
+                case 'celsiusToFahrenheit':
+                    result = (measurement * 9/5) + 32;
+                    resultDisplay.textContent = `${measurement} Celsius is ${result.toFixed(2)} Fahrenheit.`;
+                    break;
+                case 'fahrenheitToCelsius':
+                    result = (measurement - 32) * 5/9;
+                    resultDisplay.textContent = `${measurement} Fahrenheit is ${result.toFixed(2)} Celsius.`;
+                    break;
+                case 'metersToFeet':
+                    result = measurement * 3.28084;
+                    resultDisplay.textContent = `${measurement} Meters is ${result.toFixed(2)} Feet.`;
+                    break;
+                case 'feetToMeters':
+                    result = measurement / 3.28084;
+                    resultDisplay.textContent = `${measurement} Feet is ${result.toFixed(2)} Meters.`;
+                    break;
+                default:
+                    resultDisplay.textContent = 'Invalid conversion selected.';
+            }
+        }
+    </script>
+</body>
+</html>

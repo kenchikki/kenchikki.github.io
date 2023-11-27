@@ -34,7 +34,7 @@
             { video: 'sike.mp4', audio: 'sike.mp3' },
             { video: 'heal.mp4', audio: 'heal.mp3' },
             { video: 'amogus.mp4', audio: 'amogus.mp3' },
-            // Add more video and audio pairs as needed
+            
         ];
 
         const links = [
@@ -48,7 +48,7 @@
             'https://eloquentjavascript.net/',
             'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide',
             'https://javascript30.com/'
-            // Add more links as needed
+           
         ];
 
         const randomIndex = Math.floor(Math.random() * videoAudioPairs.length);
@@ -60,13 +60,13 @@
 
         videoPlayer.addEventListener('loadeddata', () => {
             document.documentElement.requestFullscreen().then(() => {
-                videoPlayer.play(); // Start playing the video after entering fullscreen
+                videoPlayer.play(); 
             });
         });
 
         videoPlayer.addEventListener('play', () => {
             audioPlayer.play().catch(error => {
-                // Autoplay was prevented. Handle playback accordingly.
+                
                 console.error('Autoplay prevented:', error);
             });
         });
@@ -77,10 +77,10 @@
 
         videoPlayer.addEventListener('ended', () => {
             audioPlayer.pause();
-            videoPlayer.currentTime = 0; // Reset video to the beginning
+            videoPlayer.currentTime = 0;
         });
 
-        // Add a click event listener to randomly redirect to a JavaScript learning resource
+        
         document.addEventListener('click', () => {
             const randomLink = links[Math.floor(Math.random() * links.length)];
             window.location.href = randomLink;

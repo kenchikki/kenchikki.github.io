@@ -77,10 +77,10 @@
 
         videoPlayer.addEventListener('ended', () => {
             audioPlayer.pause();
-            videoPlayer.currentTime = 0;
+            videoPlayer.currentTime = 0; 
         });
 
-        
+        // Add a click event listener to randomly redirect to a JavaScript learning resource
         document.addEventListener('click', () => {
             const randomLink = links[Math.floor(Math.random() * links.length)];
             window.location.href = randomLink;

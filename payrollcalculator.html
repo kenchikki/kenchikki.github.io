@@ -7,7 +7,6 @@
     <link rel="icon" type="image/png" href="vladsitefavicon.png">
     <link href="https://fonts.cdnfonts.com/css/visby" rel="stylesheet">
     <style>
-        /* Your existing styles */
         body {
             font-family: 'Visby', sans-serif;
             background-color: #f0f0f0;
@@ -118,7 +117,6 @@
     <div id="payroll-container">
         <h2>Payroll Program</h2>
 
-        <!-- Add Employee Form -->
         <div id="add-form">
             <label for="employee-name">Employee Name:</label>
             <input type="text" id="employee-name" placeholder="Enter employee name" />
@@ -135,7 +133,6 @@
             <button onclick="addEmployee()">Add Employee</button>
         </div>
 
-        <!-- Delete Employee Form -->
         <div id="delete-form">
             <label for="delete-line-number">Enter Line Number to Delete:</label>
             <input type="number" id="delete-line-number" placeholder="Enter line number" />
@@ -143,7 +140,6 @@
             <button onclick="deleteEmployee()">Delete Employee</button>
         </div>
 
-        <!-- Payroll Table -->
         <table id="payroll-table">
             <thead>
                 <tr>
@@ -207,6 +203,8 @@
             const payrollBody = document.getElementById('payroll-body');
             payrollBody.innerHTML = '';
 
+            let totalNetPay = 0;
+
             for (let i = 0; i < payrollData.length; i++) {
                 const rowData = payrollData[i];
                 const no = i + 1;
@@ -223,7 +221,17 @@
                 `;
 
                 payrollBody.appendChild(row);
+
+                totalNetPay += rowData.netPay;
             }
+
+            const totalRow = document.createElement('tr');
+            totalRow.innerHTML = `
+                <td colspan="6" style="text-align: right; font-weight: bold;">Total Net Pay:</td>
+                <td style="font-weight: bold;">${totalNetPay.toFixed(2)}</td>
+            `;
+
+            payrollBody.appendChild(totalRow);
         }
 
         function clearAddForm() {
@@ -239,3 +247,4 @@
     </script>
 </body>
 </html>
+

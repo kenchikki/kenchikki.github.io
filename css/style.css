@@ -20,6 +20,12 @@ body {
     overflow-x: hidden;
 }
 
+body a{
+    color: inherit;
+    text-decoration: none;
+
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

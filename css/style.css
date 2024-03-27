@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'KFCClassicScript Medium';
+    font-style: normal;
+    font-weight: normal;
+    src: local('KFCClassicScript Medium'), url('kfc_classic_script_by_dledeviant_dcf7t7h.woff') format('woff');
+    }
+
+body {
+    font-family: 'Visby', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000000;
+    color: #ffffff;
+    opacity: 0;
+    animation: fadeIn 3s forwards;
+    text-align: center;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+h1 {
+    font-size: 150px;
+    margin: 10px 0;
+    font-family: 'KFCClassicScript Medium', sans-serif;
+}
+
+button {
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #ffffff;
+    color: #000000;
+} 
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-left {
+    text-align: left;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.footer-left .spacer {
+    margin: 0 8px;
+}
+
+.footer-right {
+    text-align: right;
+    margin-right: 50px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+footer a {
+    color: inherit;
+    text-decoration: none;
+}

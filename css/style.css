@@ -1,14 +1,10 @@
 @font-face {
     font-family: 'kfcclassicscriptmedium';
-    src: url('font/kfc_classic_script-webfont.eot');
-    src: url('kfc_classic_script-webfont.eot?#iefix') format('embedded-opentype'),
-         url('font/kfc_classic_script-webfont.woff2') format('woff2'),
+    src: url('font/kfc_classic_script-webfont.woff2') format('woff2'),
          url('font/kfc_classic_script-webfont.woff') format('woff'),
-         url('font/kfc_classic_script-webfont.ttf') format('truetype'),
-         url('font/kfc_classic_script-webfont.svg#kfcclassicscriptmedium') format('svg');
+         url('font/kfc_classic_script-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}
 
 body {
     font-family: 'Visby', sans-serif;
@@ -43,7 +39,7 @@ body a{
 h1 {
     font-size: 150px;
     margin: 10px 0;
-    font-family: 'KFCClassicScript Medium', sans-serif;
+    font-family: 'kfcclassicscriptmedium', sans-serif;
 }
 
 button {

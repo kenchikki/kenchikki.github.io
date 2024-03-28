@@ -3,7 +3,7 @@
     font-style: normal;
     font-weight: normal;
     src: local('KFCClassicScript Medium'), url('kfc_classic_script_by_dledeviant_dcf7t7h.woff') format('woff');
-    }
+}
 
 body {
     font-family: 'Visby', sans-serif;
@@ -90,3 +90,59 @@ footer a {
     color: inherit;
     text-decoration: none;
 }
+
+@media only screen and (max-width: 600px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #000000;
+        color: #ffffff;
+        overflow: hidden;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .footer-left, .footer-right {
+        margin: 5px;
+        text-align: center;
+    }
+
+    .footer-left .spacer {
+        margin: 3px;
+    }
+}
+
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    h1 {
+        font-size: 80px;
+    }
+    button {
+        font-size: 16px;
+    }
+    
+}
+
+@media only screen and (min-width: 1025px) {
+    h1 {
+        font-size: 150px;
+    }
+    button {
+        font-size: 20px;
+    }
+}
+

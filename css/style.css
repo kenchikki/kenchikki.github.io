@@ -46,6 +46,20 @@ h1 {
     font-family: 'kfcclassicscriptmedium', sans-serif;
 }
 
+h2 {
+    font-size: 90px;
+    margin: 10px 0;
+    font-family: 'kfcclassicscriptmedium', sans-serif;
+}
+
+p {
+    max-width: 600px; 
+    margin: auto;
+    padding: 0 20px;
+    line-height: 1.5;
+    letter-spacing: 0.5;
+}
+
 button {
     background-color: transparent;
     border: 2px solid #ffffff;
@@ -111,6 +125,10 @@ footer a {
         font-size: 48px;
     }
 
+    h2 {
+        font-size: 48px;
+    }
+
     button {
         font-size: 14px;
     }
@@ -135,6 +153,9 @@ footer a {
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
     h1 {
         font-size: 80px;
+    }
+    h2{
+        font-size: 40px;
     }
     button {
         font-size: 16px;

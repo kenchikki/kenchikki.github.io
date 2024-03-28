@@ -1,8 +1,13 @@
 @font-face {
-    font-family: 'KFCClassicScript Medium';
-    font-style: normal;
+    font-family: 'kfcclassicscriptmedium';
+    src: url('kfc_classic_script-webfont.eot');
+    src: url('kfc_classic_script-webfont.eot?#iefix') format('embedded-opentype'),
+         url('kfc_classic_script-webfont.woff2') format('woff2'),
+         url('kfc_classic_script-webfont.woff') format('woff'),
+         url('kfc_classic_script-webfont.ttf') format('truetype'),
+         url('kfc_classic_script-webfont.svg#kfcclassicscriptmedium') format('svg');
     font-weight: normal;
-    src: local('KFCClassicScript Medium'), url('kfc_classic_script_by_dledeviant_dcf7t7h.woff') format('woff');
+    font-style: normal;
 }
 
 body {

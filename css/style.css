@@ -28,7 +28,27 @@ body {
 body a{
     color: inherit;
     text-decoration: none;
+}
 
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #000000;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
+}
+
+nav a:hover {
+    background-color: #272727;
+    color: #ffffff;
 }
 
 @keyframes fadeIn {
@@ -149,25 +169,27 @@ footer a {
     }
 }
 
-
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
     h1 {
         font-size: 80px;
     }
+
     h2{
         font-size: 40px;
     }
+
     button {
         font-size: 16px;
     }
-    
 }
 
 @media only screen and (min-width: 1025px) {
     h1 {
         font-size: 150px;
     }
+
     button {
         font-size: 20px;
     }
 }
+

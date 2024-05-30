@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vlad's Iframe Remover</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+</head>
+<body>
+    <label for="iframeInput">Enter iframe HTML:</label>
+    <textarea id="iframeInput"></textarea>
+    <button onclick="modifyIframe()">Modify Iframe</button>
+
+    <label for="outputText">Modified iframe HTML:</label>
+    <textarea id="outputText"></textarea>
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
+
+    <script>
+        function modifyIframe() {
+            let iframe = document.getElementById('iframeInput').value.trim();
+
+            // Regular expressions to find and replace width and height attributes
+            let iframeModified = iframe.replace(/width="\d+"/g, 'width="0"');
+            iframeModified = iframeModified.replace(/height="\d+"/g, 'height="0"');
+
+            // Display the modified iframe
+            document.getElementById('outputText').value = iframeModified;
+        }
+
+        function copyToClipboard() {
+            let modifiedIframe = document.getElementById('outputText').value.trim();
+
+            // Create a temporary textarea element for copying
+            let tempTextarea = document.createElement('textarea');
+            tempTextarea.value = modifiedIframe;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextarea);
+        }
+    </script>
+</body>
+</html>

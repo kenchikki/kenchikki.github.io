@@ -26,36 +26,40 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 </head>
 <body>
+    <h1>Iframe Remover - Changes the Height and Width Values of the Iframes to 0</h1>
     <label for="iframeInput">Enter iframe HTML:</label>
     <textarea id="iframeInput"></textarea>
     <button onclick="modifyIframe()">Modify Iframe</button>
 
     <label for="outputText">Modified iframe HTML:</label>
-    <textarea id="outputText"></textarea>
-    <button onclick="copyToClipboard()">Copy to Clipboard</button>
+    <textarea id="outputText" readonly></textarea>
+    <button onclick="clearAll()">Clear All</button>
 
     <script>
         function modifyIframe() {
             let iframe = document.getElementById('iframeInput').value.trim();
 
-            // Regular expressions to find and replace width and height attributes
             let iframeModified = iframe.replace(/width="\d+"/g, 'width="0"');
             iframeModified = iframeModified.replace(/height="\d+"/g, 'height="0"');
 
-            // Display the modified iframe
             document.getElementById('outputText').value = iframeModified;
+
+            copyToClipboard(iframeModified);
+            alert("iframe copied to clipboard");
         }
 
-        function copyToClipboard() {
-            let modifiedIframe = document.getElementById('outputText').value.trim();
-
-            // Create a temporary textarea element for copying
+        function copyToClipboard(text) {
             let tempTextarea = document.createElement('textarea');
-            tempTextarea.value = modifiedIframe;
+            tempTextarea.value = text;
             document.body.appendChild(tempTextarea);
             tempTextarea.select();
             document.execCommand('copy');
             document.body.removeChild(tempTextarea);
+        }
+
+        function clearAll() {
+            document.getElementById('iframeInput').value = '';
+            document.getElementById('outputText').value = '';
         }
     </script>
 </body>

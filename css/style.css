@@ -60,6 +60,35 @@ nav a:hover {
     }
 }
 
+.menu-item {
+    background-color: #fff;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item h3 {
+    margin: 10px 0;
+    font-size: 48px;
+    font-family: 'kfcclassicscriptmedium', sans-serif;
+}
+
+.menu-item h3 a {
+    text-decoration: none;
+    color: #333;
+}
+
+.menu-item h3 a:hover {
+    text-decoration: underline;
+}
+
+.menu-item p {
+    margin: 0.5em 0 0;
+}
+
+
+
 h1 {
     font-size: 150px;
     margin: 10px 0;

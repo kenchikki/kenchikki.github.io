@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Maker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 400px;
+            margin: 0 auto;
+        }
+        label, input, button, .checkbox, .output {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+        }
+        .output {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <script>
+        function calculateDate(dateStr) {
+            const today = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+            let resultDate;
+            if (dateStr.includes("day")) {
+                const daysAgo = parseInt(dateStr.split()[0]);
+                resultDate = new Date(today.setDate(today.getDate() - daysAgo));
+            } else if (dateStr.includes("week")) {
+                const weeksAgo = parseInt(dateStr.split()[0]);
+                resultDate = new Date(today.setDate(today.getDate() - (weeksAgo * 7)));
+            } else if (dateStr.includes("month")) {
+                const monthsAgo = parseInt(dateStr.split()[0]);
+                const newMonth = today.getMonth() - monthsAgo;
+                resultDate = new Date(today.setMonth(newMonth));
+            } else if (dateStr.includes("year")) {
+                const yearsAgo = parseInt(dateStr.split()[0]);
+                resultDate = new Date(today.setFullYear(today.getFullYear() - yearsAgo));
+            } else if (dateStr.includes("hour")) {
+                const hoursAgo = parseInt(dateStr.split()[0]);
+                resultDate = new Date(today.setHours(today.getHours() - hoursAgo));
+            }
+            return resultDate;
+        }
+
+        function getReviewPlural(count) {
+            return count === 1 ? "review" : "reviews";
+        }
+
+        function getQuestionPlural(count) {
+            return count === 1 ? "question" : "questions";
+        }
+
+        function submitForm() {
+            const reviewCount = document.getElementById("reviewCount").value;
+            const lastReviewDateStr = document.getElementById("lastReviewDate").value;
+            const repliedReviews = document.getElementById("repliedReviews").value;
+            const questionCount = document.getElementById("questionCount").value;
+            const lastQuestionDateStr = document.getElementById("lastQuestionDate").value;
+            const repliedQuestions = document.getElementById("repliedQuestions").value;
+            const starRating = document.getElementById("starRating").value;
+
+            if (!reviewCount || !lastReviewDateStr || !questionCount || !lastQuestionDateStr || !starRating) {
+                alert("You have missed a field. Please fill in all fields.");
+                return;
+            }
+
+            const output = document.getElementById("output");
+            output.value = `Logged in on ${new Date().toLocaleDateString()} \n\n`;
+
+            if (parseInt(reviewCount) > 0) {
+                output.value += `Reviews: ${reviewCount} ${getReviewPlural(parseInt(reviewCount))} \n`;
+                const lastReviewDate = calculateDate(lastReviewDateStr);
+                if (lastReviewDate) {
+                    output.value += `Last review date posted: ${lastReviewDate.toLocaleDateString()} \n`;
+                }
+                if (repliedReviews) {
+                    output.value += `Replied to ${repliedReviews} ${getReviewPlural(parseInt(repliedReviews))} \n\n`;
+                }
+            }
+
+            if (parseInt(questionCount) > 0) {
+                output.value += `Questions: ${questionCount} ${getQuestionPlural(parseInt(questionCount))} \n`;
+                const lastQuestionDate = calculateDate(lastQuestionDateStr);
+                if (lastQuestionDate) {
+                    output.value += `Last question posted date: ${lastQuestionDate.toLocaleDateString()} \n`;
+                }
+                if (repliedQuestions) {
+                    output.value += `Answers: ${repliedQuestions} ${getQuestionPlural(parseInt(repliedQuestions))} \n\n`;
+                }
+            }
+
+            output.value += `Star rating: ${starRating}`;
+        }
+
+        function clearFields() {
+            document.getElementById("reviewCount").value = "";
+            document.getElementById("lastReviewDate").value = "";
+            document.getElementById("repliedReviews").value = "";
+            document.getElementById("questionCount").value = "";
+            document.getElementById("lastQuestionDate").value = "";
+            document.getElementById("repliedQuestions").value = "";
+            document.getElementById("starRating").value = "";
+            document.getElementById("output").value = "";
+        }
+
+        function copyResult() {
+            const output = document.getElementById("output");
+            output.select();
+            document.execCommand("copy");
+        }
+
+        function generateOutput() {
+            const pacificTime = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+            const currentTime = pacificTime.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+            const websiteMatch = document.getElementById("websiteMatch").checked ? "Match" : "Not a Match";
+            const websiteWorking = document.getElementById("websiteWorking").checked ? "Working" : "Not Working";
+            const numberMatch = document.getElementById("numberMatch").checked ? "Match" : "Not a Match";
+            const storeHoursMatch = document.getElementById("storeHoursMatch").checked ? "Match" : "Not a Match";
+
+            const outputText = 
+                `Checked on ${currentTime}\n` +
+                `Website: ${websiteMatch} and ${websiteWorking}\n` +
+                `Number: ${numberMatch}\n` +
+                `Store hours: ${storeHoursMatch}`;
+                
+            document.getElementById("outputSimpleForm").innerText = outputText;
+        }
+
+        function copyOutput() {
+            const output = document.getElementById("outputSimpleForm").innerText;
+            navigator.clipboard.writeText(output);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Form Maker</h1>
+        <label for="reviewCount">Review Count:</label>
+        <input type="text" id="reviewCount">
+
+        <label for="lastReviewDate">Last review posted date (e.g., '2 days ago', '3 months ago', '1 year ago'):</label>
+        <input type="text" id="lastReviewDate">
+
+        <label for="repliedReviews">How many reviews have been replied?</label>
+        <input type="text" id="repliedReviews">
+
+        <label for="questionCount">Question Count:</label>
+        <input type="text" id="questionCount">
+
+        <label for="lastQuestionDate">Last question posted date (e.g., '2 days ago', '3 months ago', '1 year ago'):</label>
+        <input type="text" id="lastQuestionDate">
+
+        <label for="repliedQuestions">How many questions has been replied?</label>
+        <input type="text" id="repliedQuestions">
+
+        <label for="starRating">Star Rating:</label>
+        <input type="text" id="starRating">
+
+        <button onclick="submitForm()">Confirm</button>
+        <button onclick="clearFields()">Clear Fields</button>
+        <button onclick="copyResult()">Copy Result</button>
+
+        <textarea id="output" readonly></textarea>
+    </div>
+
+    <div class="container">
+        <h1>Simple Form</h1>
+        <label class="checkbox"><input type="checkbox" id="websiteMatch"> Is the website match?</label>
+        <label class="checkbox"><input type="checkbox" id="websiteWorking"> Is the website and all of it's pages working?</label>
+        <label class="checkbox"><input type="checkbox" id="numberMatch"> Is the number correct?</label>
+        <label class="checkbox"><input type="checkbox" id="storeHoursMatch"> Are the store hours correct?</label>
+        
+        <button onclick="generateOutput()">Generate Output</button>
+        <button onclick="copyOutput()">Copy Output</button>
+
+        <div id="outputSimpleForm" class="output"></div>
+    </div>
+</body>
+</html>
